@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+             <div class="card-body p-4">
+                <h1 class="card-title text-center mb-4 h3">Admin Login</h1>
+                <form method="POST" action="{{ url_for('login', next=request.args.get('next')) }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Benutzername</label>
+                        <input type="text" class="form-control" id="username" name="username" required value="Admin">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Passwort</label>
+                        <input type="password" class="form-control" id="password" name="password" required value="Admin">
+                    </div>
+                    <div class="d-grid">
+                      <button type="submit" class="btn btn-primary">Einloggen</button>
+                    </div>
+                </form>
+                <p class="mt-3 text-center text-muted small">Demo: Admin / Admin</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

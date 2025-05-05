@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1 class="mb-4">Neuen Beitrag erstellen</h1>
+        <form method="POST" action="{{ url_for('create_post') }}">
+            <div class="mb-3">
+                <label for="title" class="form-label">Titel</label>
+                <input type="text" class="form-control" id="title" name="title" required value="{{ request.form.title or post_title or '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Inhalt</label>
+                <textarea class="form-control" id="content" name="content" rows="10" required>{{ request.form.content or post_content or '' }}</textarea>
+                 <div class="form-text">Du kannst hier einfachen Text oder auch HTML eingeben.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Beitrag veröffentlichen</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary ms-2">Abbrechen</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

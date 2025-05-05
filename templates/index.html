@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto">
+            <h1 class="mb-4">Alle Beiträge</h1>
+
+            {% if posts %}
+                {% for post in posts %}
+                <article class="blog-post-card card">
+                    <div class="card-body">
+                        <h2 class="blog-post-title h4"><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h2>
+                        <p class="blog-post-meta">
+                            Gepostet von {{ post.author }} am {{ post.date_posted.strftime('%d.%m.%Y %H:%M') }}
+                        </p>
+                        <div class="blog-post-content">
+                            {{ post.content[:200] | safe }}{% if post.content|length > 200 %}...{% endif %}
+                        </div>
+                         <a href="{{ url_for('post_detail', post_id=post.id) }}" class="btn btn-sm btn-outline-primary mt-3">Weiterlesen</a>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <p>Noch keine Beiträge vorhanden. <a href="{{ url_for('create_post') }}">Erstelle den ersten Beitrag!</a> (Login erforderlich)</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto">
+            <article class="blog-post-detail">
+                <h1 class="post-detail-title">{{ post.title }}</h1>
+                <p class="post-detail-meta">
+                    Gepostet von {{ post.author }} am {{ post.date_posted.strftime('%d.%m.%Y %H:%M') }}
+                </p>
+                <div class="post-detail-content mt-4">
+                    {{ post.content | replace('\n', '<br>') | safe }}
+                </div>
+            </article>
+            <hr class="my-4">
+             <a href="{{ url_for('index') }}" class="btn btn-secondary">« Zurück zur Übersicht</a>
+        </div>
+    </div>
+{% endblock %}
